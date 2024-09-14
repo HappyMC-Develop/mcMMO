@@ -1,0 +1,6 @@
+<configuration>
+    <http>
+        <connectionTimeout>60000</connectionTimeout>
+        <readTimeout>60000</readTimeout>
+    </http>
+</configuration>
