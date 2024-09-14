@@ -1,52 +1,45 @@
-# This workflow automatically tests new commits and pull requests as they come in.
-# Note that this does not upload any artifacts, you will need to compile mcMMO manually
-# if you wish to create the actual jar.
-name: Compile and test
+name: Java CI with Maven
 
 on:
-  # We run our tests whenever the pom or a source file was touched.
-  # There is no need to run Maven when only the changelog was touched.
-  # We may also want to re-run this workflow when the workflow file itself
-  # was updated too.
   push:
-    paths:
-    - 'src/**'
-    - 'pom.xml'
-    - '.github/workflows/maven.yml'
-
-  # Whenever someone submits a new pull request which modified the pom or a source file,
-  # we want to ensure it compiles successfully and that all tests will pass.
   pull_request:
-    paths:
-    - 'src/**'
-    - 'pom.xml'
+    branches:
+      - master
 
 jobs:
-  compile:
-    name: Maven compiler
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdkversion: [21]
+
     steps:
-
-    # 1. Check out the current working tree
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    # 2. Setup Java 17 JDK (Adopt)
-    - name: Java 17 setup
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-package: jdk
-        java-version: '17'
-
-    # 3. Setup local Maven package cache to speed up building
-    - name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
-
-    # 4. Build via Maven 
-    - name: Build via Maven
-      run: mvn verify -B --file pom.xml -DdisableXmlReport=true
+      - uses: actions/checkout@main
+      - uses: actions/setup-java@main
+        with:
+          distribution: "zulu"
+          java-version: ${{ matrix.jdkversion }}
+          cache: "maven"
+      - name: Build
+        run: mvn -V -B clean package
+      - name: Get the repository name
+        id: get-repo-name
+        run: |
+          echo "::set-output name=repo_name::$(echo ${{ github.repository }} | cut -d'/' -f2)"
+      - name: Get short SHA
+        id: sha
+        run: |
+          echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
+      - name: Upload Jar
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ steps.get-repo-name.outputs.repo_name }}
+          path: target/*.jar
+      - name: Automatic Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ steps.sha.outputs.short_sha }}
+          prerelease: false
+          title: "${{ steps.get-repo-name.outputs.repo_name }}-${{ steps.sha.outputs.short_sha }} Release"
+          files: build/libs/*.jar

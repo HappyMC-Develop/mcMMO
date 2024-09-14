@@ -1,7 +1,21 @@
 # mcMMO
+
+### 中文版本
+
+> [!CAUTION]  
+> 本分支仅用于个人开发提供构建或帮助，请勿直接使用构建附件。如出现版权或开源协议问题，本作者概不负责。
+
+---
+
+### English Version
+
+> [!CAUTION]  
+> This branch is intended solely for personal development purposes and to provide builds or assistance. Please do not use the build attachments directly. The author assumes no responsibility for any copyright or open-source license issues that may arise.
+
 ## The #1 RPG Mod for Minecraft
 
 ## Website
+
 I'm working on a brand new website for mcMMO
 
 You can check it out here http://www.mcmmo.org
@@ -11,6 +25,7 @@ Spigot Resource: https://spigot.mcmmo.org
 I plan to post links to our new wiki (its still under development), downloads, and dev blogs there.
 
 ## API
+
 If you are using maven, you can add mcMMO API to your plugin by adding it to pom.xml like so...
 
 ```
@@ -19,6 +34,7 @@ If you are using maven, you can add mcMMO API to your plugin by adding it to pom
     <url>https://nexus.neetgames.com/repository/maven-releases/</url>
 </repository>
 ```
+
 ```
 <dependency>
     <groupId>com.gmail.nossr50.mcMMO</groupId>
@@ -26,26 +42,33 @@ If you are using maven, you can add mcMMO API to your plugin by adding it to pom
     <version>2.2.004</version>
 </dependency>
 ```
-### Builds
-Currently, you can obtain our builds via the Spigot or Polymart:
 
+### Builds
+
+Currently, you can obtain our builds via the Spigot or Polymart:
 
 http://spigot.mcmmo.org
 
 https://polymart.org/resource/mcmmo.727
 
 ### Brief Description
+
 The goal of mcMMO is to take core Minecraft game mechanics and expand them into an extensive and quality RPG experience. Everything in mcMMO has been carefully thought out and is constantly being improved upon. Currently, mcMMO adds fourteen unique skills to train and level in. Each of these skills is highly customizable through our configuration files, allowing server admins to tweak mcMMO to best suit the needs of his or her server. Know that the mcMMO team is dedicated to providing an ever-evolving experience, and that we carefully read all feedback and bug reports in order to evaluate and balance the mechanics of mcMMO in every update.
 
 ## About the Team
+
 In December 2018, the original author and creator of mcMMO (nossr50) returned and took over the role of project lead once again, to develop and improve mcMMO.
+
 #### Project Lead & Founder
+
 [![nossr50](http://www.gravatar.com/avatar/f2ee41eedfd645fb4a3a2c8f6cb1b18c.png)](https://github.com/nossr50)
 
 #### Current mcMMO Devs
+
 [![nossr50](http://www.gravatar.com/avatar/f2ee41eedfd645fb4a3a2c8f6cb1b18c.png)](https://github.com/nossr50)
 
 ### Former team members
+
 [![gmcferrin](http://www.gravatar.com/avatar/b64c52daf25d206b27650788b5813b7b.png)](https://github.com/gmcferrin)
 [![kashike](https://secure.gravatar.com/avatar/b5e86d6d443b957fd5cdee55501f3799.png)](https://github.com/kashike)
 [![electronicboy](https://secure.gravatar.com/avatar/44759c38d311ce09596de6a2d5b88036.png)](https://github.com/electronicboy)
@@ -59,6 +82,7 @@ In December 2018, the original author and creator of mcMMO (nossr50) returned an
 [![TheYeti](https://i.imgur.com/tzFrxdo.png)](https://github.com/TheYeti)
 
 #### Folia Contributors
+
 [<img src="https://github.com/HSGamer.png" width=80 alt="HSGamer">](https://github.com/HSGamer)
 [<img src="https://github.com/TechnicallyCoded.png" width=80 alt="TechnicallyCoded">](https://github.com/TechnicallyCoded)
 [<img src="https://github.com/Yomamaeatstoes.png" width=80 alt="Yomamaeatstoes">](https://github.com/Yomamaeatstoes)
@@ -73,7 +97,6 @@ The typical command used to build mcMMO is: `mvn clean install`
 https://spigot.mcmmo.org for more up to date information.
 
 Downloads:
-
 
 https://www.spigotmc.org/resources/official-mcmmo-original-author-returns.64348/
 
