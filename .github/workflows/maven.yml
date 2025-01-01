@@ -34,7 +34,7 @@ jobs:
         run: |
           rm -rf ~/.m2/repository/com/tcoded/FoliaLib
           rm -rf ~/.m2/repository/me/clip/placeholderapi
-          mvn -V -B clean package
+          mvn -V -B --no-transfer-progress clean package
 
       - name: Get the repository name
         id: get-repo-name
